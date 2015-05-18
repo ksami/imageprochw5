@@ -17,12 +17,13 @@ fvecs_test = fvecs_test(1:numcomp,:);
 % (iii) For each column of fvecs test, find the closest column of fvecs by using
 % Euclidean distance, and look up its label train, which is going to be id.
 % (e.g. If the closest column is 50 for the first test image, then id(1) = label train(50))
-[~, col] = size(fvecs_test);
+[~, col_t] = size(fvecs_test);
+[~, col] = size(fvecs);
 
-id = zeros(col,1);
+id = zeros(col_t,1);
 dist = zeros(col,1);
 
-for i=1:col
+for i=1:col_t
     for j=1:col
         % Get Euclidean distance
         dist(j) = norm(fvecs_test(:,i) - fvecs(:,j));

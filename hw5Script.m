@@ -18,7 +18,7 @@ ploteigface(meanvec, basis, 10, imsize);
 
 % Part 5
 numcomps = [5, 10, 50, 100];
-faceimages{5} = 0;
+faceimages{5} = zeros(imsize);
 
 for i=1:5
     faceimages{i} = face_test{i};
@@ -33,15 +33,15 @@ fvecs = projecttrain(face_train, meanvec, basis);
 
 % Part 7
 numcomp = [1,3,5,10,25,50,100];
-accuracy = zeros(size(numcomp, 1), 1);
+accuracy = zeros(size(numcomp, 2), 1);
 
-for i=1:size(numcomp, 1)
+for i=1:size(numcomp, 2)
     id = recognizeface(face_test, fvecs, label_train, meanvec, basis, numcomp(i));
     
     % Calculate accuracy
     error = id - label_test;
     
-    [num_results, ~] = size(id,1);
+    num_results = size(id,1);
     num_correct = 0;
     
     for j=1:num_results
@@ -55,3 +55,6 @@ end
 % Plot accuracy for face recognition vs numcomp
 figure
 plot(numcomp, accuracy);
+title('Accuracy');
+xlabel('numcomp');
+ylabel('accuracy %');
