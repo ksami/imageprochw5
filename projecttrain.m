@@ -3,7 +3,7 @@ function fvecs = projecttrain(face_train, meanvec, basis)
 % Part 1. Note that this function calls projectface of Part 3 iteratively for each
 % image.
 K = 100;
-num_images = 360;
+[num_images, ~] = size(face_train);
 
 fvecs = zeros(K, num_images);
 
